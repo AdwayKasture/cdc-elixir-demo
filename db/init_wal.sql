@@ -5,6 +5,9 @@ CREATE TABLE IF NOT EXISTS public.products_wal (
     price DECIMAL(10, 2) NOT NULL
 );
 
+-- This forces the WAL to log the entire row's data before an UPDATE or DELETE.
+ALTER TABLE public.products_wal REPLICA IDENTITY FULL;
+
 -- Create a publication to publish all changes (INSERT, UPDATE, DELETE)
 -- from the 'products_wal' table.
 CREATE PUBLICATION products_wal_pub FOR TABLE public.products_wal;

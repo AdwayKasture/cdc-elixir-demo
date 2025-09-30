@@ -1,9 +1,9 @@
-defmodule CdcWal.MixProject do
+defmodule CdcTrigger.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :cdc_wal,
+      app: :cdc_trigger,
       version: "0.1.0",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
@@ -14,17 +14,14 @@ defmodule CdcWal.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger],
-      mod: {CdcWal.Application, []}
+      extra_applications: [:logger]
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:postgrex, "~> 0.21.1"},
-      {:ecto_sql, "~> 3.0"},
-      {:ecto, "~> 3.10"}
+      # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
   end

@@ -2,16 +2,15 @@ defmodule CdcWal.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
-alias CdcWal.ProductCommiter
 
   use Application
   @impl true
   def start(_type, _args) do
     children = [
       # Starts a worker by calling: CdcWal.Worker.start_link(arg)
-      {CdcWal.ReplicationConnection,host: "localhost",database: "cdc_db",username: "postgres",password: "postgres"},
-      CdcWal.Repo,
-      ProductCommiter
+      {CdcWal.ReplicationConnection,
+       host: "localhost", database: "cdc_db", username: "postgres", password: "postgres"},
+      CdcWal.Repo
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

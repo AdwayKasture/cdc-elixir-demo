@@ -1,7 +1,7 @@
 services:
-  db:
+  db_wal:
     image: postgres:17
-    container_name: cdc_postgres_db
+    container_name: wal_postgres_db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -9,6 +9,18 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/init_wal.sql:/docker-entrypoint-initdb.d/init.sql
+    command: ["postgres","-c", "wal_level=logical", "-c", "max_replication_slots=10", "-c", "max_wal_senders=10"]
+  db_trigger:
+    image: postgres:17
+    container_name: trigger_postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cdc_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init_trigger.sql:/docker-entrypoint-initdb.d/init.sql
     command: ["postgres","-c", "wal_level=logical", "-c", "max_replication_slots=10", "-c", "max_wal_senders=10"]
 

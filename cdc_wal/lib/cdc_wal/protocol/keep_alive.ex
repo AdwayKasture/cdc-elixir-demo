@@ -1,5 +1,4 @@
 defmodule CdcWal.Protocol.KeepAlive do
-
   @moduledoc """
   Primary keepalive message (B)
   Byte1('k')
@@ -22,5 +21,4 @@ defmodule CdcWal.Protocol.KeepAlive do
           reply: :now | :await
         }
   defstruct [:wal_end, :clock, :reply]
-  
 end

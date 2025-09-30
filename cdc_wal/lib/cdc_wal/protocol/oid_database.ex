@@ -1,3 +1,4 @@
+# This file is taken from the https://github.com/supabase/realtime/blob/main/lib/realtime/adapters/postgres/protocol.ex
 # CREDITS
 # This file draws heavily from https://github.com/cainophile/pgoutput_decoder
 # License: https://github.com/cainophile/pgoutput_decoder/blob/master/LICENSE
