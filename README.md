@@ -2,7 +2,7 @@
 
 This repository provides a demo for implementing **Change Data Capture (CDC)** in PostgreSQL using **Elixir**. It showcases two common approaches: **Write-Ahead Log (WAL) streaming** and **database triggers**.
 
-*(TODO: Add a link to the detailed write-up article here)*
+ write up: https://medium.com/@adwaykasture00/the-two-paths-to-cdc-in-postgres-decoding-the-wal-or-pulling-the-trigger-1b5fd3421d52
 
 -----
 
@@ -123,13 +123,4 @@ Similar to the WAL demo, you can test by creating, updating, or deleting records
         cdc_db=# UPDATE products_wal SET name = '4K Monitor' WHERE name = 'Monitor';
         cdc_db=# DELETE FROM products_wal WHERE price < 500.00;
     ```
--
-    ```bash
-        docker exec -it wal_postgres_db psql -U postgres -d cdc_db
-    ```
-    ```sql
-        cdc_db=# INSERT INTO products_wal (name, price) VALUES ('Monitor', 350.00);
-        cdc_db=# UPDATE products_wal SET name = '4K Monitor' WHERE name = 'Monitor';
-        cdc_db=# DELETE FROM products_wal WHERE price < 500.00;
-    ```
--
+
