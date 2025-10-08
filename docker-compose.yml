@@ -2,6 +2,7 @@ services:
   db_wal:
     image: postgres:17
     container_name: wal_postgres_db
+    profiles: [wal]
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -14,6 +15,7 @@ services:
   db_trigger:
     image: postgres:17
     container_name: trigger_postgres_db
+    profiles: [trigger]
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -22,5 +24,4 @@ services:
       - "5432:5432"
     volumes:
       - ./db/init_trigger.sql:/docker-entrypoint-initdb.d/init.sql
-    command: ["postgres","-c", "wal_level=logical", "-c", "max_replication_slots=10", "-c", "max_wal_senders=10"]
 

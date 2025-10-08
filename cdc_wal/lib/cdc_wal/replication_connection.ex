@@ -1,12 +1,7 @@
 defmodule CdcWal.ReplicationConnection do
   use Postgrex.ReplicationConnection
   import CdcWal.Protocol
-  alias CdcWal.Protocol.Decoder.Messages.Delete
-  alias CdcWal.Protocol.Decoder.Messages.Commit
-  alias CdcWal.Protocol.Decoder.Messages.Relation
-  alias CdcWal.Protocol.Decoder.Messages.Begin
-  alias CdcWal.Protocol.Decoder.Messages.Update
-  alias CdcWal.Protocol.Decoder.Messages.Insert
+  alias CdcWal.Protocol.Decoder.Messages.{Delete,Commit,Relation,Begin,Update,Insert}
   alias CdcWal.Protocol.Decoder
   alias CdcWal.Protocol.{KeepAlive, Write}
 
@@ -35,7 +30,6 @@ defmodule CdcWal.ReplicationConnection do
     {:stream, query, [], %{state | step: :streaming}}
   end
 
-  ## write message 
   @impl true
   def handle_data(data, state) when is_write(data) do
     %Write{message: message} = parse(data)
